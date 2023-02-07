@@ -28,6 +28,10 @@ function sendData() {
     ws.send(data);
 }
 
+function helloWorld(message) {
+    $("#helloworldmessage").append(" " + message + "");
+}
+
 $(function() {
     $("form").on('submit', function(e) {
         e.preventDefault();

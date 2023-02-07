@@ -18,5 +18,6 @@ public class SocketTextHandler extends TextWebSocketHandler {
         String payload = message.getPayload();
         JSONObject jsonObject = new JSONObject(payload);
         session.sendMessage(new TextMessage("Hi " + jsonObject.get("user") + " how may I help you?"));
+        System.out.println("session.getUri(): " + session.getUri());
     }
 }
