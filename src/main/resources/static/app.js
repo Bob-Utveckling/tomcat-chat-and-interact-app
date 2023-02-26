@@ -1,3 +1,8 @@
+const backendUrl =
+    //'ws://chatapp-env.eba-fa3azyjp.us-east-1.elasticbeanstalk.com/user';
+    'ws://localhost:8080/tomcat-chat-and-interact-app/user';
+    //'ws://localhost:8081/user';
+
 var ws;
 function setConnected(connected) {
     $("#connect").prop("disabled", connected);
@@ -5,8 +10,7 @@ function setConnected(connected) {
 }
 
 function connect() {
-    ws = new WebSocket('ws://localhost:8080/tomcat-chat-and-interact-app/user');
-    //ws = new WebSocket('ws://localhost:8081/user');
+    ws = new WebSocket(backendUrl);
     ws.onmessage = function(data) {
         helloWorld(data.data);
     }
