@@ -7,11 +7,22 @@ import javax.persistence.Id;
 
 @Entity
 public class User {
+    public User() {}
+
+    public User(String name, String username, String email) {
+        this.name = name;
+        this.username = username;
+        this.email = email;
+    }
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //to make Hibernate create a new id if the id already exists, making "id column identity column"
     private Integer id;
 
     private String name;
+
+    private String username;
 
     private String email;
 
@@ -37,5 +48,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
