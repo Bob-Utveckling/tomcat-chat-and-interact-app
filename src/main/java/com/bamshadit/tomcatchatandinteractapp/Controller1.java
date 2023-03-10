@@ -6,6 +6,7 @@ import com.bamshadit.tomcatchatandinteractapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,6 +36,13 @@ public class Controller1 {
         //return "user from database: " + user.getName() + " -- email: " + user.getEmail();
         //return "You are now logged in - user: " + username;
     }
+
+    @GetMapping("/index2")
+    public String login(Model model) {
+        System.out.println("- return Thymeleaf index2 html page");
+        return "index2";
+    }
+
 
     @GetMapping("/login/{username}")
     public ResponseEntity login(@PathVariable String username) {
