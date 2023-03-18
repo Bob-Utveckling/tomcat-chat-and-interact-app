@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.websocket.server.PathParam;
 
@@ -19,15 +20,29 @@ public class Controller1 {
     UserRepository userRepository;
 
     //@GetMapping("/start")
+    @RequestMapping(value="/admin", method=RequestMethod.GET)
+    public String admin() {
+
+        System.out.println("Admin page access...");
+        return "admin";
+    }
+
+    @RequestMapping(value="/user", method=RequestMethod.GET)
+    public String user() {
+
+        System.out.println("User page access...");
+        return "user";
+    }
+
     @RequestMapping(value="/start", method=RequestMethod.GET)
     public String start() {
 
         System.out.println("Start");
-        return "Start page";
+        return "index2";
     }
 
     //@GetMapping("/save/{username}")
-    @RequestMapping(value="/save{username}", method=RequestMethod.GET)
+    @RequestMapping(value="/save/{username}", method=RequestMethod.GET)
     public ResponseEntity save(@PathVariable String username) {
         System.out.println("save a record for username: '" + username + "'");
         User user = new User("Test name",username,"test@test.com");
@@ -62,6 +77,17 @@ public class Controller1 {
     public String userprofile() {
         System.out.println("Show User Profile");
         String firstname = "Bamshad";
-        return ("Your profile. -- " + "First name: " + firstname);
+        System.out.println ("Your profile. -- " + "First name: " + firstname);
+        return "index2";
     }
+
+    //haven't run this method. just copied from https://www.javatpoint.com/spring-boot-thymeleaf-view It should work, used ModelAndView
+    /*@RequestMapping(value="/save", method=RequestMethod.POST)
+    public ModelAndView save(@ModelAttribute User user)
+    {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("user-data");
+        modelAndView.addObject("user", user);
+        return modelAndView;
+    }*/
 }
